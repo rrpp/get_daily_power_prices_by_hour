@@ -1,5 +1,6 @@
 import requests
 from datetime import date
+import datetime
 import csv
 import json
 
@@ -21,7 +22,7 @@ def obtener_precio_luz():
     # Devolver el diccionario con los precios de la luz por horas
     return precios_luz
 
-
+print("ejecucion: ", datetime.datetime.now())
 # Ejemplo de uso
 precios_luz = obtener_precio_luz()
 today = date.today()
@@ -44,7 +45,7 @@ with open(nombre_csv, mode='w', newline='') as file:
     for hora, data in precios_luz.items():
         writer.writerow({'Fecha': data['fecha'], 'Hora': hora, 'Precio (€/kWh)': data['precio_kwh']})
 
-print(f"Los datos se han almacenado en el archivo {nombre_csv}")
+print(f"Los datos se han almacenado en el archivo {nombre_csv}", datetime.datetime.now())
 
 # Nombre del archivo JSON
 nombre_json = f"precios_luz_{today}.json"
@@ -53,4 +54,4 @@ nombre_json = f"precios_luz_{today}.json"
 with open(nombre_json, mode='w') as file:
     json.dump(precios_luz, file)
 
-print(f"Los datos se han almacenado en el archivo {nombre_json}")
+print(f"Los datos se han almacenado en el archivo {nombre_json}:", datetime.datetime.now())

@@ -38,7 +38,7 @@ def obtener_temperatura_pronostico(api_key):
 
 
 # Clave de API de OpenWeatherMap
-api_key = '2d8ca1ebd16e649b7c241d3b14500b13'
+api_key = 'APIKEY HERE' #request a api key for your project
 
 # Generar el pronóstico de temperatura
 forecast = obtener_temperatura_pronostico(api_key)

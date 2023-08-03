@@ -1,0 +1,23 @@
+import Adafruit_DHT
+import time
+
+# Configuración del sensor DHT11
+pin = 4  # Conecta el pin de datos del DHT11 al pin GPIO 4 (BCM)
+
+def read_temp_humidity():
+    humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, pin)
+    return humidity, temperature
+
+def save_to_file(humidity, temperature):
+    with open('temperature_humidity_log.txt', 'a') as f:
+        timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
+        f.write(f"{timestamp}: Temperatura = {temperature}°C, Humedad = {humidity}%\n")
+
+while True:
+    humidity, temperature = read_temp_humidity()
+    if humidity is not None and temperature is not None:
+        print(f"Temperatura: {temperature}°C, Humedad: {humidity}%")
+        save_to_file(humidity, temperature)
+    else:
+        print("Error al leer datos del sensor.")
+    time.sleep(20)  # 20 segundos
